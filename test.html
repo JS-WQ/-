@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模板引擎测试</title>
+</head>
+<body>
+    <script>
+        var templateEngine = function(tpl,data){
+
+            var re = /<%([^%>]+)?%>/g
+            while(match = re.exec(tpl)){  //判断match是否为true
+                console.log(match)
+                //["<%name%>", "name", index: 21, input: "<p>Hello, my name is <%name%>. I'm <%age%> years old.</p>"]
+                tpl = tpl.replace(match[0],data[match[1]])
+                //tpl = tpl.replace("<%name%>",data["name"])
+                
+            }
+            return tpl
+        }
+        
+        var template = '<p>Hello, my name is <%name%>. I\'m <%age%> years old.</p>'
+        var data = {
+            name:'kangkang',
+            age:18
+        }
+        var string =templateEngine(template,data)
+
+    </script>
+</body>
+</html>
